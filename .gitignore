@@ -6,6 +6,7 @@
 !/pyproject.toml
 !/uv.lock
 !/README.md
+!/LICENSE
 
 # Product Python source and tests
 !/src/

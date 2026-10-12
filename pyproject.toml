@@ -3,8 +3,8 @@ name = "self-learning-assistant"
 version = "0.1.0"
 description = "A local self-learning assistant that builds personal memory, preferences and knowledge through conversation."
 readme = "README.md"
-# Disable automatic inclusion of the local license file.
-license-files = []
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.12"
 dependencies = [
     "httpx>=0.28.1",
@@ -37,9 +37,9 @@ include = [
     "/docs/privacy-and-data.md",
     "/infra", "/.github",
     "/.python-version", "/.gitignore",
-    "/pyproject.toml", "/uv.lock", "/README.md",
+    "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE",
 ]
-exclude = ["/examples", "/evals", "/local-docs", "/LICENSE", "**/__pycache__", "**/*.pyc"]
+exclude = ["/examples", "/evals", "/local-docs", "**/__pycache__", "**/*.pyc"]
 
 [project.scripts]
 self-learning-assistant = "self_learning_assistant.cli.main:main"

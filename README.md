@@ -44,3 +44,7 @@ uv run sla learn history
 uv run sla chat --private --offline
 uv run sla data backup /absolute/path/to/backup.zip
 ```
+
+## License
+
+The original source code is licensed under [MIT](LICENSE); the copyright notice is included in the license file. Model weights remain subject to their publishers' licenses.

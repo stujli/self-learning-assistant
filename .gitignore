@@ -1,0 +1,55 @@
+*
+
+# Project metadata and entry documentation
+!/.gitignore
+!/.python-version
+!/pyproject.toml
+!/uv.lock
+!/README.md
+
+# Product Python source and tests
+!/src/
+!/src/self_learning_assistant/
+!/src/self_learning_assistant/*.py
+!/src/self_learning_assistant/cli/
+!/src/self_learning_assistant/cli/*.py
+!/src/self_learning_assistant/memory/
+!/src/self_learning_assistant/memory/*.py
+!/src/self_learning_assistant/model/
+!/src/self_learning_assistant/model/*.py
+!/src/self_learning_assistant/product/
+!/src/self_learning_assistant/product/*.py
+!/src/self_learning_assistant/tools/
+!/src/self_learning_assistant/tools/*.py
+!/tests/
+!/tests/*.py
+!/tests/optional/
+!/tests/optional/*.py
+
+# Maintenance and acceptance scripts
+!/scripts/
+!/scripts/adapter_acceptance.py
+!/scripts/product_acceptance.py
+!/scripts/build_release.py
+!/scripts/learning_acceptance.py
+!/scripts/product_smoke.py
+!/scripts/prompt_smoke.py
+
+# Documentation
+!/docs/
+!/docs/installation.md
+!/docs/chat-and-settings.md
+!/docs/personal-memory.md
+!/docs/knowledge-base.md
+!/docs/web-verification.md
+!/docs/background-learning.md
+!/docs/privacy-and-data.md
+
+# Search deployment and CI configuration
+!/infra/
+!/infra/searxng/
+!/infra/searxng/compose.yml
+!/infra/searxng/settings.yml
+!/.github/
+!/.github/workflows/
+!/.github/workflows/ci.yml

@@ -1,0 +1,100 @@
+[project]
+name = "self-learning-assistant"
+version = "0.1.0"
+description = "A local self-learning assistant that builds personal memory, preferences and knowledge through conversation."
+readme = "README.md"
+# Disable automatic inclusion of the local license file.
+license-files = []
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "pypdf>=6.0.0",
+    "jsonschema>=4.23.0",
+    "torch==2.11.0",
+    "torchvision==0.26.0",
+    "transformers>=5.14.1",
+    "accelerate>=1.14.0",
+    "pillow>=12.1.1",
+    "bitsandbytes>=0.49.0",
+    "peft>=0.18.0",
+]
+
+[project.optional-dependencies]
+mcp = ["mcp>=2.0.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/self_learning_assistant"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src/self_learning_assistant", "/tests", "/scripts",
+    "/docs/installation.md", "/docs/chat-and-settings.md", "/docs/personal-memory.md",
+    "/docs/knowledge-base.md", "/docs/web-verification.md", "/docs/background-learning.md",
+    "/docs/privacy-and-data.md",
+    "/infra", "/.github",
+    "/.python-version", "/.gitignore",
+    "/pyproject.toml", "/uv.lock", "/README.md",
+]
+exclude = ["/examples", "/evals", "/local-docs", "/LICENSE", "**/__pycache__", "**/*.pyc"]
+
+[project.scripts]
+self-learning-assistant = "self_learning_assistant.cli.main:main"
+sla = "self_learning_assistant.cli.main:main"
+self-learning-assistant-tools = "self_learning_assistant.tools.server:main"
+auto-evolve = "self_learning_assistant.cli.main:main"
+ae = "self_learning_assistant.cli.main:main"
+auto-evolve-tools = "self_learning_assistant.tools.server:main"
+
+[dependency-groups]
+dev = [
+    "hatchling>=1.27.0",
+    "mypy>=1.17.0",
+    "types-jsonschema>=4.23.0",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.2.0",
+    "ruff>=0.12.0",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["docs"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=self_learning_assistant",
+    "--cov-report=term",
+    "--cov-fail-under=80",
+]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["self_learning_assistant.model.transformers", "self_learning_assistant.tools.server", "self_learning_assistant.product.finetune"]
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = ["torch", "huggingface_hub"]
+ignore_missing_imports = true
